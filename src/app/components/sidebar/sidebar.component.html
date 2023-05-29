@@ -1,0 +1,20 @@
+<div class="navigation" [ngClass]="{'active': navActive}">
+    <ul>
+        <a class="img" href="#">
+            <img src="https://coorditanques.com/resource/icons/logo 1.webp" alt="Company Logo">
+        </a>
+        <li class="list" *ngFor="let item of menuItems; let i = index" [ngClass]="{'active': selectedItem === item.href}">
+            <b></b>
+            <b></b>
+            <a href="{{ item.href }}" class="icon-title">
+                <span class="icon"><i [ngClass]="item.icon"></i></span>
+                <span class="title">{{ item.title }}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="toggle" (click)="toggleMenu()">
+    <i class="fa-solid fa-bars" *ngIf="!navActive"></i>
+    <i class="fa-solid fa-x" *ngIf="navActive"></i>
+</div>

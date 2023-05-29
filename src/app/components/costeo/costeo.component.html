@@ -1,0 +1,135 @@
+<div class="title">
+    <h1>Costeo</h1>
+    <p>Tener en cuenta que para los costeos a Ecuador, solo se tiene cotizado a las ciudades de Quito y Guayaquil</p>
+</div>
+
+<form>
+    <div class="checks">
+        <label class="check-ecuador">
+            <h4>
+                Ecuador:
+            </h4>
+            <input type="checkbox" [checked]="ecuador" (change)="toggleEcuador()" />
+        </label>
+        <label class="check-ecuador">
+            <h4>
+                Tercero:
+            </h4>
+            <input type="checkbox" [checked]="tercero" (change)="toggleTercero()" />
+        </label>
+        <label class="check-ecuador">
+            <h4>
+                Ecuador:
+            </h4>
+            <input type="checkbox" [checked]="" (change)="toggleTercero()" />
+        </label>
+    </div>
+    <div class="ciudades">
+        <label>
+            <h4>
+                Cliente:
+            </h4>
+            <input [(ngModel)]="cliente" name="cliente">
+        </label>
+        
+        <label>
+            <h4>
+                Ciudad Origen:
+            </h4>
+            <input [(ngModel)]="origen" name="origen">
+        </label>
+        <label>
+            <h4>
+                Ciudad Destino:
+            </h4>
+            <input [(ngModel)]="destino" name="destino">
+        </label>
+        <button id="nuevaCiudad">Añadir ciudad</button>
+    </div>
+
+    <div class="tipo_vh">
+        <label>
+            <h4>
+                Observacion:
+            </h4>
+            <input [(ngModel)]="observacion" name="observacion">
+        </label>
+        <label>
+            <h4>
+                Tipo de vehiculo:
+            </h4>
+            <div class="buttons">
+                <button *ngFor="let vh of tipo_vhs" (click)=cambiarTipoVh(vh) class="tvhb"
+                    [ngClass]="{'selected' : tipo_vh === vh}"> {{ vh }} </button>
+            </div>
+        </label>
+        <div class="cargue-descargue">
+            <label>
+                <h4>
+                    Horas de Cargue:
+                </h4>
+                <input [(ngModel)]="cargue" name="cargue" type="number">
+            </label>
+            <label>
+                <h4>
+                    Horas de Descargue:
+                </h4>
+                <input [(ngModel)]="descargue" name="descargue" type="number">
+            </label>
+        </div>
+    </div>
+
+    <div class="info">
+        <label>
+            <h4>
+                Ciudad Ecuador:
+            </h4>
+            <input [(ngModel)]="ciudadEcuador" name="ciudadEcuador" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}">
+        </label>
+        <label >
+            <h4>
+                Precio Loraver:
+            </h4>
+            <input [(ngModel)]="loraver" name="loraver" type="number" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}">
+        </label>
+
+    </div>
+
+
+    <div class="utili-comp">
+        <label>
+            <h4>
+                Utilidad:
+            </h4>
+            <div class="porcentaje">
+                {{ utili }} <span class="cm">%</span>
+            </div>
+            <input type="range" [value]="utili" (input)="cambiarUtilidad($event)" min="0" max="200" class="form-range"
+                id="customRange1" />
+        </label>
+
+        <label>
+            <h4>
+                Compensación:
+            </h4>
+            <div class="porcentaje">
+                {{ comp }} <span class="cm">%</span>
+            </div>
+            <input type="range" [value]="comp" (input)="cambiarCompensacion($event)" min="0" max="100"
+                class="form-range custom-range" id="customRange2" [disabled]="tercero" [ngClass]="{'disabled-input': tercero}"/>
+        </label>
+
+        <label>
+            <h4>
+                Utilidad Loraver:
+            </h4>
+            <div class="porcentaje">
+                {{ loraverUtili }} <span class="cm">%</span>
+            </div>
+            <input type="range" [value]="loraverUtili" (input)="cambiarUtiliLoraver($event)" min="0" max="100"
+                class="form-range custom-range" id="customRange2" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}"/>
+        </label>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>

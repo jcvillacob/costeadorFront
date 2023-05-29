@@ -1,0 +1,200 @@
+.navigation {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 70px;
+    border-radius: 10px;
+    box-sizing: initial;
+    border-left: 5px solid #EE2C37;
+    background: #EE2C37;
+    transition: width 0.5s;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+.navigation a img {
+    width: 80%;
+    margin-bottom: 2rem;
+    background: #fff;
+    padding: 7px 0;
+    border-radius: 10px;
+}
+
+.navigation.active a img {
+    width: 80%;
+    padding: 15px;
+}
+
+i {
+    font-size: 1.3rem;
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+}
+
+.navigation.active {
+    width: 250px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 40px;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navigation ul li.active {
+    background: #fff;
+}
+
+.navigation ul li b:nth-child(1) {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 100%;
+    background: #fff;
+    display: none;
+}
+
+.navigation ul li b:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 20px;
+    background: #EE2C37;
+}
+
+.navigation ul li b:nth-child(2) {
+    position: absolute;
+    bottom: -20px;
+    height: 20px;
+    width: 100%;
+    background: #fff;
+    display: none;
+}
+
+.navigation ul li b:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    background: #EE2C37;
+}
+
+.navigation ul li.active b:nth-child(1),
+.navigation ul li.active b:nth-child(2) {
+    display: block;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul li.active a {
+    color: #333;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+    font-size: 1.5em;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: normal;
+}
+
+.toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #EE2C37;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.toggle.active {
+    background: #ff4d89;
+}
+
+.toggle ion-icon {
+    position: absolute;
+    color: #fff;
+    font-size: 34px;
+    display: none;
+}
+
+.toggle ion-icon.open,
+.toggle.active ion-icon.close {
+    display: block;
+}
+
+.toggle ion-icon.close,
+.toggle.active ion-icon.open {
+    display: none;
+}
+
+/* Agrega estilos para pantallas aún más pequeñas */
+@media screen and (max-width: 480px) {
+    .navigation{
+        width: 50px;
+        padding-top: 0;
+    }
+
+    .navigation ul {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .navigation ul li span i {
+        margin-left: -10px;
+    }
+
+    .navigation.active a {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
