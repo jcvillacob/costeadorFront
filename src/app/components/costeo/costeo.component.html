@@ -1,9 +1,9 @@
 <div class="title">
     <h1>Costeo</h1>
-    <p>Tener en cuenta que para los costeos a Ecuador, solo se tiene cotizado a las ciudades de Quito y Guayaquil</p>
 </div>
 
-<form>
+<form (ngSubmit)="cotizar()">
+    <!-- Div para los checks -->
     <div class="checks">
         <label class="check-ecuador">
             <h4>
@@ -19,50 +19,92 @@
         </label>
         <label class="check-ecuador">
             <h4>
-                Ecuador:
+                Compensación:
             </h4>
-            <input type="checkbox" [checked]="" (change)="toggleTercero()" />
+            <input type="checkbox" [checked]="distance" (change)="toggleDistancia()" />
+        </label>
+        <button id="nuevaCiudad" type="button" (click)="anadirCiudad()">
+            <span *ngIf="!city">Añadir ciudad</span>
+            <span *ngIf="city">Eliminar ciudad</span>
+        </button>
+    </div>
+
+    <!-- Div para las Vacío y Vuelta a Cargar -->
+    <div class="ciudades section vacio-vuelta" [ngClass]="{'noactivo' : !distance}">
+        <label>
+            <h4>
+                Vacío desde:
+            </h4>
+            <input [(ngModel)]="vacioDesde" name="vacioDesde">
+        </label>
+
+        <label>
+            <h4>
+                Carga Nuevamente:
+            </h4>
+            <input [(ngModel)]="VueltaCargar" name="VueltaCargar">
+        </label>
+
+        <label>
+            <h4>
+                Distancia Propia:
+            </h4>
+            <input [(ngModel)]="distancia" name="distancia" type="number" [disabled]="!distance"
+                [ngClass]="{'disabled-input': !distance}">
         </label>
     </div>
-    <div class="ciudades">
-        <label>
+
+    <!-- Div para las ciudades -->
+    <div class="ciudades section">
+        <label [ngClass]="{'conInter' : city}">
             <h4>
                 Cliente:
             </h4>
             <input [(ngModel)]="cliente" name="cliente">
         </label>
-        
-        <label>
+
+        <label [ngClass]="{'conInter' : city}">
             <h4>
                 Ciudad Origen:
             </h4>
             <input [(ngModel)]="origen" name="origen">
         </label>
-        <label>
+
+        <label class="conInter" *ngIf="city">
+            <h4>
+                Ciudad Intermedia:
+            </h4>
+            <input [(ngModel)]="ciudadInter" name="ciudadInter">
+        </label>
+
+        <label [ngClass]="{'conInter' : city}">
             <h4>
                 Ciudad Destino:
             </h4>
             <input [(ngModel)]="destino" name="destino">
         </label>
-        <button id="nuevaCiudad">Añadir ciudad</button>
     </div>
 
-    <div class="tipo_vh">
+
+    <!-- Div para los Tipos de Vehículos -->
+    <div class="tipo_vh section">
         <label>
             <h4>
                 Observacion:
             </h4>
             <input [(ngModel)]="observacion" name="observacion">
         </label>
+
         <label>
             <h4>
                 Tipo de vehiculo:
             </h4>
             <div class="buttons">
-                <button *ngFor="let vh of tipo_vhs" (click)=cambiarTipoVh(vh) class="tvhb"
+                <button *ngFor="let vh of tipo_vhs" type="button" (click)=cambiarTipoVh(vh) class="tvhb"
                     [ngClass]="{'selected' : tipo_vh === vh}"> {{ vh }} </button>
             </div>
         </label>
+
         <div class="cargue-descargue">
             <label>
                 <h4>
@@ -70,6 +112,7 @@
                 </h4>
                 <input [(ngModel)]="cargue" name="cargue" type="number">
             </label>
+
             <label>
                 <h4>
                     Horas de Descargue:
@@ -79,24 +122,31 @@
         </div>
     </div>
 
-    <div class="info">
+    <!-- Div para Otra información -->
+    <div class="info section">
         <label>
             <h4>
                 Ciudad Ecuador:
             </h4>
-            <input [(ngModel)]="ciudadEcuador" name="ciudadEcuador" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}">
+            <input [(ngModel)]="ciudadEcuador" name="ciudadEcuador" [disabled]="!ecuador"
+                [ngClass]="{'disabled-input': !ecuador}">
         </label>
-        <label >
+        <label>
             <h4>
                 Precio Loraver:
             </h4>
-            <input [(ngModel)]="loraver" name="loraver" type="number" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}">
+            <input [(ngModel)]="loraver" name="loraver" type="number" [disabled]="!ecuador"
+                [ngClass]="{'disabled-input': !ecuador}">
         </label>
-
+        <label class="frases">
+            <p class="frase"> {{ quote.frase }} </p>
+            <span class="autor">{{ quote.autor }}</span>
+        </label>
     </div>
 
 
-    <div class="utili-comp">
+    <!-- Div para los rangos -->
+    <div class="utili-comp section">
         <label>
             <h4>
                 Utilidad:
@@ -116,7 +166,8 @@
                 {{ comp }} <span class="cm">%</span>
             </div>
             <input type="range" [value]="comp" (input)="cambiarCompensacion($event)" min="0" max="100"
-                class="form-range custom-range" id="customRange2" [disabled]="tercero" [ngClass]="{'disabled-input': tercero}"/>
+                class="form-range custom-range" id="customRange2" [disabled]="tercero"
+                [ngClass]="{'disabled-input': tercero}" />
         </label>
 
         <label>
@@ -127,9 +178,13 @@
                 {{ loraverUtili }} <span class="cm">%</span>
             </div>
             <input type="range" [value]="loraverUtili" (input)="cambiarUtiliLoraver($event)" min="0" max="100"
-                class="form-range custom-range" id="customRange2" [disabled]="!ecuador" [ngClass]="{'disabled-input': !ecuador}"/>
+                class="form-range custom-range" id="customRange2" [disabled]="!ecuador"
+                [ngClass]="{'disabled-input': !ecuador}" />
         </label>
     </div>
 
-    <button type="submit">Submit</button>
+    <!-- Botón de costear -->
+    <div class="costeo">
+        <button type="submit" class="costear-btn">Cotizar</button>
+    </div>
 </form>

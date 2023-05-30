@@ -4,6 +4,7 @@
 
 .title h1 {
     font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 .title p {
@@ -12,6 +13,15 @@
 
 form {
     width: 100%;
+}
+
+.section {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.section label {
+    width: 25%;
 }
 
 label {
@@ -25,9 +35,21 @@ h4 {
 }
 
 .disabled-input {
-    background-color: #777777;
+    background-color: #072A30;
     color: #ffffff;
 }
+
+
+/* VACIOS Y VUELTA A CARGAR */
+.vacio-vuelta {
+    transition: all 0.5s ease;
+}
+
+.noactivo {
+    display: none !important;
+}
+
+
 
 /* CHECKS */
 .checks {
@@ -35,11 +57,13 @@ h4 {
     margin-bottom: 25px;
     gap: 20px;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .check-ecuador {
     display: flex;
     padding: 10px;
+    justify-content: center;
 }
 
 .check-ecuador h4 {
@@ -47,6 +71,20 @@ h4 {
     padding: 0;
 }
 
+#nuevaCiudad {
+    padding: 15px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #EE2C37;
+    color: aliceblue;
+    border-width: 0;
+    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+}
+
+#nuevaCiudad:hover {
+    background-color: #072A30;
+    cursor: pointer;
+}
 
 
 
@@ -72,31 +110,29 @@ h4 {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
 }
 
-#nuevaCiudad {
-    padding: 15px;
-    height: 50px;
-    border-radius: 8px;
-    background-color: #EE2C37;
-    color: aliceblue;
-    border-width: 0;
-    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+.inter {
+    display: none !important;
 }
 
-#nuevaCiudad:hover {
-    background-color: #ee2c36d5;
-    cursor: pointer;
+.inter .conInter {
+    display: block;
 }
+
+.conInter {
+    width: 20% !important;
+}
+
 
 
 /* TIPO DE VEHÍCULOS */
 .tipo_vh {
-    margin: 30px;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .tipo_vh label {
+    margin: 0 -15px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -117,12 +153,13 @@ h4 {
 }
 
 .tvhb {
+    width: 30%;
     padding: 10px;
-    margin: 0 10px;
+    margin: 0;
     border-radius: 8px;
     border-width: 0;
     color: aliceblue;
-    background-color: #68050a;
+    background-color: #072A30;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.342);
 }
 
@@ -136,18 +173,18 @@ h4 {
 }
 
 .cargue-descargue {
-    margin-left: 10px;
+    width: 25%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .cargue-descargue label {
-    margin-left: 10px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 5px;
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 .cargue-descargue label input {
@@ -167,7 +204,6 @@ h4 {
 
 /* INFORMACIÓN */
 .info {
-    margin-top: 30px;
     display: flex;
     justify-content: space-around;
 }
@@ -175,7 +211,7 @@ h4 {
 .info label {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
 }
 
 .info label input {
@@ -186,11 +222,33 @@ h4 {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
 }
 
+.frases {
+    transition: all 0.3s ease;
+    background-color: #072A30;
+}
+
+.frases:hover {
+    transform: scale(1.03);
+}
+
+.frase {
+    font-size: 1.1em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.autor {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #ffffffd8;
+    text-align: right;
+    display: block;
+}
+
 
 /* UTILIDAD Y COMPENSACIÓN */
 .utili-comp {
     width: 100%;
-    margin: 20px 0;
     display: flex;
     justify-content: space-around;
 }
@@ -215,7 +273,6 @@ h4 {
     width: 90%;
 }
 
-/* Cambia el color de la barra de rango */
 input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 8px;
@@ -226,11 +283,34 @@ input[type='range']::-webkit-slider-runnable-track {
     border: 0.2px solid #EE2C37;
 }
 
-/* Cambia el color del círculo/botón del rango */
 input[type='range']::-webkit-slider-thumb {
     border-radius: 25px;
     background-color: #b91212;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -5px;
+}
+
+
+/* BOTON COSTEAR */
+.costeo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.costear-btn {
+    width: 20%;
+    padding: 15px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #EE2C37;
+    color: aliceblue;
+    border-width: 0;
+    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+}
+
+.costear-btn:hover {
+    background-color: #072A30;
+    cursor: pointer;
 }
