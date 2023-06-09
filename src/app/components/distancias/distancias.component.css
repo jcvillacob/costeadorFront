@@ -317,7 +317,7 @@ input[type='range']::-webkit-slider-thumb {
 .costeo {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .costear-btn {
@@ -341,110 +341,4 @@ input[type='range']::-webkit-slider-thumb {
 
 .loader {
     margin-bottom: -10px;
-}
-
-
-/* COSTEADOS */
-.costeado {
-    width: 100%;
-    margin-bottom: 70px;
-}
-
-.info-importante {
-    width: 100%;
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-.info-importante .card {
-    width: 25%;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgb(61, 59, 59);
-}
-
-.valor {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.valor h5 {
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1rem;
-}
-
-.ingre {
-    background-color: rgba(13, 240, 13, 0.116);
-}
-
-.costo {
-    background-color: #ee2c362d;
-}
-
-.expand {
-    width: 30%;
-    justify-content: flex-start;
-}
-
-.expand i {
-    margin: 0 20px;
-}
-
-.todos-costos {
-    width: 90%;
-    padding: 15px;
-    background-color: #ee2c3625;
-    margin-top: 20px;
-    border-radius: 15px;
-}
-
-.costos-totales-c {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-
-.costo-indiv {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 15px 5px;
-    padding: 3px 10px;
-    border-radius: 10px;
-    width: 90%;
-    box-shadow: 2px 2px 10px rgb(61, 59, 59);
-    background-color: #eeededbe;
-}
-
-.costo-indiv h4 {
-    position: absolute;
-    left: 50%;
-}
-
-.costo-indiv h3 {
-    max-width: 50%;
-}
-
-.costos-detallados {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 20px;
-    transition: all 0.5s ease-in;
-}
-
-.costo-detallado-indiv {
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgb(61, 59, 59);
-    margin: 5px;
-    background-color: #fcefef;
 }

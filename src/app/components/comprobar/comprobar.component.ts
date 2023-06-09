@@ -3,13 +3,12 @@ import { CosteoService } from 'src/app/services/costeo.service';
 import { FrasesService } from 'src/app/services/frases.service';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
 import Swal from 'sweetalert2';
-
 @Component({
-  selector: 'app-costeo',
-  templateUrl: './costeo.component.html',
-  styleUrls: ['./costeo.component.css']
+  selector: 'app-comprobar',
+  templateUrl: './comprobar.component.html',
+  styleUrls: ['./comprobar.component.css']
 })
-export class CosteoComponent implements OnInit {
+export class ComprobarComponent implements OnInit {
   origen: string = '';
   destino: string = '';
   ciudadInter: string = '';
@@ -22,7 +21,7 @@ export class CosteoComponent implements OnInit {
 
   tipo_vh: string = '';
   tipo_vhs: string[] = ['TM', 'DT', 'SC'];
-  utili: number = 20;
+  flete: number = 0;
   cliente: string = '';
   observacion: string = '';
   comp: number = 20;
@@ -72,10 +71,6 @@ export class CosteoComponent implements OnInit {
     this.frasesService.getRandomQuote().subscribe(response => {
       this.quote = response;
     });
-  }
-
-  cambiarUtilidad(event: any) {
-    this.utili = event.target.value;
   }
 
   cambiarCompensacion(event: any) {
@@ -213,6 +208,19 @@ export class CosteoComponent implements OnInit {
     const costeo: any = {};
 
 
+    /* ALERTA PARA QUE INGRESE VALOR DEL FLETE */
+    if (!this.flete) {
+      Swal.fire({
+        icon: 'error',
+        title: 'No has ingresado valor de Flete',
+        text: 'Por favor, Ingresa el valor de este viaje.',
+      });
+      return;
+    } else {
+      costeo.Flete_total = this.flete;
+    }
+
+
     /* ALERTA PARA QUE INGRESE TIPO DE VEHICULO */
     if (this.tipo_vh === '') {
       Swal.fire({
@@ -224,6 +232,7 @@ export class CosteoComponent implements OnInit {
     } else {
       costeo.tipo_vh = this.tipo_vh;
     }
+
 
     /* ALERTA PARA QUE INGRESE CLIENTE */
     if (this.cliente === '') {
@@ -237,24 +246,6 @@ export class CosteoComponent implements OnInit {
       costeo.cliente = this.cliente;
     }
 
-    /* ALERTA PARA QUE INGRESE UTILIDAD */
-    if (this.utili == 0) {
-      let resultUtil = await Swal.fire({
-        icon: 'question',
-        title: 'No has añadido una utilidad',
-        text: '¿Quieres continuar sin Utilidad?',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, Continuar',
-        cancelButtonText: 'Cancelar',
-      });
-      if (resultUtil.isConfirmed) {
-        costeo.utili = this.utili / 100;
-      } else if (resultUtil.dismiss === Swal.DismissReason.cancel) {
-        return;
-      }
-    } else {
-      costeo.utili = this.utili / 100;
-    }
 
     /* ALERTA PARA QUE INGRESE COMPENSACION */
     if (this.comp == 0 && !this.distance) {
@@ -351,11 +342,11 @@ export class CosteoComponent implements OnInit {
     this.loading = true;
     this.ciudades = [];
     this.costeadoB = false;
-    this.costeoService.Costear(costeo).subscribe(data => {
-      this.costeado = data;
+    this.costeoService.comprobar(costeo).subscribe(data => {
       console.log(data);
+      this.costeado = data;
       this.loading = false
-      if (this.costeado.Costeo?.Ingresos.Flete_total === null) {
+      if (this.costeado.Costeo?.Ingresos.Utilidad === null) {
         Swal.fire({
           icon: 'error',
           title: 'Ha Ocurrido un Error',
@@ -371,5 +362,4 @@ export class CosteoComponent implements OnInit {
       }
     })
   }
-
 }

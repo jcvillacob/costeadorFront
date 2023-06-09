@@ -1,0 +1,114 @@
+<div class="title">
+    <h1>Calcular Compensación</h1>
+</div>
+
+<form (ngSubmit)="cotizar()">
+
+    <!-- Div para las Vacío y Vuelta a Cargar -->
+    <div class="ciudades section vacio-vuelta">
+        <label class="vacio">
+            <h4>
+                Vacío desde:
+            </h4>
+            <input [(ngModel)]="vacioDesde" name="vacioDesde" (keyup)="sugerirVacio(vacioDesde)">
+            <ul class="suggestions" *ngIf="suggestionsVacio && suggestionsVacio.length">
+                <li *ngFor="let suggestion of suggestionsVacio" (click)="selectSuggestionVacio(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+
+        <label class="vacio">
+            <h4>
+                Carga Nuevamente:
+            </h4>
+            <input [(ngModel)]="VueltaCargar" name="VueltaCargar" (keyup)="sugerirVuelta(VueltaCargar)">
+            <ul class="suggestions" *ngIf="suggestionsVuelta && suggestionsVuelta.length">
+                <li *ngFor="let suggestion of suggestionsVuelta" (click)="selectSuggestionVuelta(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+    </div>
+
+    <!-- Div para las ciudades -->
+    <div class="ciudades section">
+        <label>
+            <h4>
+                Ciudad Origen:
+            </h4>
+            <input [(ngModel)]="origen" name="origen" (keyup)="sugerirOrigen(origen)">
+            <ul class="suggestions" *ngIf="suggestionsOrigen && suggestionsOrigen.length">
+                <li *ngFor="let suggestion of suggestionsOrigen" (click)="selectSuggestionOrigen(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+
+        <label>
+            <h4>
+                Ciudad Intermedia:
+            </h4>
+            <input [(ngModel)]="ciudadInter" name="ciudadInter"  (keyup)="sugerirInter(ciudadInter)">
+            <ul class="suggestions" *ngIf="suggestionsInter && suggestionsInter.length">
+                <li *ngFor="let suggestion of suggestionsInter" (click)="selectSuggestionInter(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+
+        <label>
+            <h4>
+                Ciudad Destino:
+            </h4>
+            <input [(ngModel)]="destino" name="destino" (keyup)="sugerirDestino(destino)">
+            <ul class="suggestions" *ngIf="suggestionsDestino && suggestionsDestino.length">
+                <li *ngFor="let suggestion of suggestionsDestino" (click)="selectSuggestionDestino(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+    </div>
+
+    <!-- Botón de costear -->
+    <div class="costeo">
+        <button type="submit" class="costear-btn">
+            <span *ngIf="!loading">Compensación</span>
+            <app-loading *ngIf="loading" class="loader"></app-loading>
+        </button>
+    </div>
+</form>
+
+<div class="costeado" *ngIf="costeadoB">
+    <div class="info-importante">
+        <div class="card">
+            <h4>Compensación:</h4>
+            <div class="valor">
+                <h5>{{ costeado.compensacion * 100 }} %</h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Distancia de Ruta:</h4>
+            <div class="valor">
+                <h5>{{ costeado.distancias?.distanciaNormal }} Km</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-importante">
+        <div class="card">
+            <h4>Distancia para Cargar:</h4>
+            <div class="valor">
+                <h5>{{ costeado.distancias?.distanciaVacio }} Km</h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Distancia después de Descargar:</h4>
+            <div class="valor">
+                <h5>{{ costeado.distancias?.distanciaNuevo }} Km</h5>
+            </div>
+        </div>
+    </div>
+</div>

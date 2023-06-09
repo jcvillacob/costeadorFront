@@ -1,5 +1,5 @@
 <div class="title">
-    <h1>Costear</h1>
+    <h1>Comprobar Utilidad</h1>
 </div>
 
 <form (ngSubmit)="cotizar()">
@@ -54,7 +54,7 @@
                 </li>
             </ul>
         </label>
-
+        
         <label>
             <h4>
                 Distancia Propia:
@@ -89,7 +89,7 @@
             <h4>
                 Ciudad Intermedia:
             </h4>
-            <input [(ngModel)]="ciudadInter" name="ciudadInter" (keyup)="sugerirInter(ciudadInter)">
+            <input [(ngModel)]="ciudadInter" name="ciudadInter"  (keyup)="sugerirInter(ciudadInter)">
             <ul class="suggestions" *ngIf="suggestionsInter && suggestionsInter.length">
                 <li *ngFor="let suggestion of suggestionsInter" (click)="selectSuggestionInter(suggestion)">
                     {{ suggestion }}
@@ -172,15 +172,11 @@
 
     <!-- Div para los rangos -->
     <div class="utili-comp section">
-        <label>
+        <label class="flete-label">
             <h4>
-                Utilidad:
+                Valor de Flete:
             </h4>
-            <div class="porcentaje">
-                {{ utili }} <span class="cm">%</span>
-            </div>
-            <input type="range" [value]="utili" (input)="cambiarUtilidad($event)" min="0" max="200" class="form-range"
-                id="customRange1" />
+            <input [(ngModel)]="flete" name="flete" type="number">
         </label>
 
         <label>
@@ -211,11 +207,12 @@
     <!-- Botón de costear -->
     <div class="costeo">
         <button type="submit" class="costear-btn">
-            <span *ngIf="!loading">Cotizar</span>
+            <span *ngIf="!loading">Comprobar</span>
             <app-loading *ngIf="loading" class="loader"></app-loading>
         </button>
     </div>
 </form>
+
 
 <div class="costeado" *ngIf="costeadoB">
     <div class="info-importante">

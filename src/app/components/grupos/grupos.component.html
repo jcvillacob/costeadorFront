@@ -1,0 +1,41 @@
+<div class="title">
+    <h1>Costear por grupo</h1>
+</div>
+
+<form (ngSubmit)="cotizar()">
+
+    <!-- Div para los checks -->
+    <div class="checks">
+        <button class="nuevaCiudad" type="button" (click)="descargarCosteo()">
+            <span>Formato Costeo</span>
+        </button>
+
+        <button class="nuevaCiudad" type="button" (click)="descargarComprobacion()">
+            <span>Formato Comprobación</span>
+        </button>
+    </div>
+
+    <label for="document" class="drop-container">
+        <span class="drop-title">Arrastra el Archivo</span>
+        ó
+        <input type="file" id="document" class="custom-file-input" accept=".xlsx, .xls" (change)="handleFileInput($event)" required>
+    </label>
+
+    <label class="seleccion-tipo">
+        <div class="tipo" (click)=cambiarCos() [ngClass]="{ 'selected' : tipo == 'costeo' }">
+            <span>costear</span>
+        </div>
+        <div class="tipo" (click)=cambiarCom() [ngClass]="{ 'selected' : tipo == 'comprobar' }">
+            <span>Comprobar</span>
+        </div>
+    </label>
+
+    <!-- Botón de costear -->
+    <div class="costeo">
+        <button type="submit" class="costear-btn">
+            <span *ngIf="(tipo == 'costeo') && !loading">Cotizar</span>
+            <span *ngIf="(tipo == 'comprobar') && !loading">Comprobar</span>
+            <app-loading *ngIf="loading" class="loader"></app-loading>
+        </button>
+    </div>
+</form>

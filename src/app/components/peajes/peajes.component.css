@@ -34,59 +34,6 @@ h4 {
     margin: 10px 0;
 }
 
-.disabled-input {
-    background-color: #072A30;
-    color: #ffffff;
-}
-
-
-/* VACIOS Y VUELTA A CARGAR */
-.vacio-vuelta {
-    transition: all 0.5s ease;
-}
-
-.noactivo {
-    display: none !important;
-}
-
-
-
-/* CHECKS */
-.checks {
-    display: flex;
-    margin-bottom: 25px;
-    gap: 20px;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.check-ecuador {
-    display: flex;
-    padding: 10px;
-    justify-content: center;
-}
-
-.check-ecuador h4 {
-    margin: 0;
-    padding: 0;
-}
-
-#nuevaCiudad {
-    padding: 15px;
-    height: 50px;
-    border-radius: 8px;
-    background-color: #EE2C37;
-    color: aliceblue;
-    border-width: 0;
-    box-shadow: 1px 1px 2px rgb(53, 51, 51);
-}
-
-#nuevaCiudad:hover {
-    background-color: #072A30;
-    cursor: pointer;
-}
-
-
 
 /* CIUDADES */
 .ciudades {
@@ -130,20 +77,6 @@ h4 {
 
 }
 
-.inter {
-    display: none !important;
-}
-
-.inter .conInter {
-    display: block;
-}
-
-.conInter {
-    width: 20% !important;
-}
-
-
-
 
 /* TIPO DE VEHÍCULOS */
 .tipo_vh {
@@ -153,6 +86,7 @@ h4 {
 }
 
 .tipo_vh label {
+    width: 40%;
     margin: 0 -15px;
     height: 100%;
     display: flex;
@@ -193,56 +127,6 @@ h4 {
     background-color: #f5464e;
 }
 
-.cargue-descargue {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cargue-descargue label {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    padding: 10px 15px;
-}
-
-.cargue-descargue label input {
-    padding: 10px;
-    width: 90%;
-    border-radius: 10px;
-    border-width: 0;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
-}
-
-.cargue-descargue label h4 {
-    margin: 0;
-    padding: 0;
-    width: 90%;
-}
-
-
-/* INFORMACIÓN */
-.info {
-    display: flex;
-    justify-content: space-around;
-}
-
-.info label {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.info label input {
-    padding: 10px;
-    width: 90%;
-    border-radius: 10px;
-    border-width: 0;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
-}
-
 .frases {
     transition: all 0.3s ease;
     background-color: #072A30;
@@ -266,58 +150,11 @@ h4 {
     display: block;
 }
 
-
-/* UTILIDAD Y COMPENSACIÓN */
-.utili-comp {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.utili-comp label {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    padding-top: 0;
-}
-
-.utili-comp label .porcentaje {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: rgb(43, 42, 42);
-}
-
-.utili-comp label input {
-    width: 90%;
-}
-
-input[type='range']::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #313030bb;
-    background: #EE2C37;
-    border-radius: 25px;
-    border: 0.2px solid #EE2C37;
-}
-
-input[type='range']::-webkit-slider-thumb {
-    border-radius: 25px;
-    background-color: #b91212;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -5px;
-}
-
-
 /* BOTON COSTEAR */
 .costeo {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .costear-btn {
@@ -342,6 +179,7 @@ input[type='range']::-webkit-slider-thumb {
 .loader {
     margin-bottom: -10px;
 }
+
 
 
 /* COSTEADOS */
@@ -398,7 +236,7 @@ input[type='range']::-webkit-slider-thumb {
 .todos-costos {
     width: 90%;
     padding: 15px;
-    background-color: #ee2c3625;
+    background-color: #fff;
     margin-top: 20px;
     border-radius: 15px;
 }

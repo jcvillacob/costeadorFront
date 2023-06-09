@@ -284,6 +284,22 @@ h4 {
     padding-top: 0;
 }
 
+.flete-label {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.flete-label input {
+    padding: 10px;
+    width: 90%;
+    border-radius: 10px;
+    border-width: 0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
+}
+
 .utili-comp label .porcentaje {
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -342,6 +358,7 @@ input[type='range']::-webkit-slider-thumb {
 .loader {
     margin-bottom: -10px;
 }
+
 
 
 /* COSTEADOS */

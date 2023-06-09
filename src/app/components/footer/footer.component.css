@@ -1,0 +1,21 @@
+footer {
+    margin: 0;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+i {
+    color: #EE2C37;
+    margin-left: 10px;
+    font-size: 35px;
+    transition: all 0.3s ease-in;
+}
+
+i:hover {
+    scale: 1.2;
+    cursor: pointer;
+}

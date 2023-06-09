@@ -1,0 +1,53 @@
+<div class="title">
+    <h1>Obtener Distancias</h1>
+</div>
+
+<form (ngSubmit)="cotizar()">
+
+    <!-- Div para las ciudades -->
+    <div class="ciudades section">
+        <label>
+            <h4>
+                Ciudad Origen:
+            </h4>
+            <input [(ngModel)]="origen" name="origen" (keyup)="sugerirOrigen(origen)">
+            <ul class="suggestions" *ngIf="suggestionsOrigen && suggestionsOrigen.length">
+                <li *ngFor="let suggestion of suggestionsOrigen" (click)="selectSuggestionOrigen(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+
+        <label>
+            <h4>
+                Ciudad Intermedia:
+            </h4>
+            <input [(ngModel)]="ciudadInter" name="ciudadInter"  (keyup)="sugerirInter(ciudadInter)">
+            <ul class="suggestions" *ngIf="suggestionsInter && suggestionsInter.length">
+                <li *ngFor="let suggestion of suggestionsInter" (click)="selectSuggestionInter(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+
+        <label>
+            <h4>
+                Ciudad Destino:
+            </h4>
+            <input [(ngModel)]="destino" name="destino" (keyup)="sugerirDestino(destino)">
+            <ul class="suggestions" *ngIf="suggestionsDestino && suggestionsDestino.length">
+                <li *ngFor="let suggestion of suggestionsDestino" (click)="selectSuggestionDestino(suggestion)">
+                    {{ suggestion }}
+                </li>
+            </ul>
+        </label>
+    </div>
+
+    <!-- Botón de costear -->
+    <div class="costeo">
+        <button type="submit" class="costear-btn">
+            <span *ngIf="!loading">Distancia</span>
+            <app-loading *ngIf="loading" class="loader"></app-loading>
+        </button>
+    </div>
+</form>

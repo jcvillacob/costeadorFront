@@ -1,0 +1,157 @@
+.title {
+    color: rgb(32, 31, 31);
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.title p {
+    font-size: 1.2rem;
+}
+
+form {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgb(61, 59, 59);
+}
+
+
+/* CHECKS */
+.checks {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90%;
+}
+
+.nuevaCiudad {
+    padding: 15px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #EE2C37;
+    color: aliceblue;
+    border-width: 0;
+    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+}
+
+.nuevaCiudad:hover {
+    background-color: #072A30;
+    cursor: pointer;
+}
+
+
+
+
+/* File Input */
+.drop-container {
+    width: 90%;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+    background: #f5dddd;
+    border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+    color: #222;
+}
+
+.drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+.custom-file-input  {
+    background-color: #EE2C37;
+    padding: 15px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.custom-file-input:hover {
+    cursor: pointer;
+}
+
+/* Seleccion de tipo */
+.seleccion-tipo {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+}
+
+.tipo {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #072A30;
+    color: aliceblue;
+}
+
+.tipo:hover {
+    background-color: #ec4850;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #EE2C37;
+}
+
+
+/* BOTON COSTEAR */
+.costeo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.costear-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    padding: 15px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #EE2C37;
+    color: aliceblue;
+    border-width: 0;
+    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+}
+
+.costear-btn:hover {
+    background-color: #072A30;
+    cursor: pointer;
+}
+
+.loader {
+    margin-bottom: -10px;
+}
