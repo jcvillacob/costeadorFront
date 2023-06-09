@@ -357,7 +357,12 @@ export class ComprobarComponent implements OnInit {
         this.costosVariablesDetallados = Object.entries(this.costeado.Costeo?.Costos.Costos_Variables.todos_variables);
         this.costosGastosDetallados = Object.entries(this.costeado.Costeo?.Costos.Gastos_Porcentuales.todos_porc_gsto);
         this.costosIngresosDetallados = Object.entries(this.costeado.Costeo?.Costos.Ingresos_Porcentuales.todos_porc_ings);
-        this.costosPeajesDetallados = this.costeado.Peajes?.peajes[0];
+        this.costosPeajesDetallados = this.costeado.Peajes?.peajes[0] || [];
+        if (this.costeado.Peajes?.peajes.length > 0) {
+          for (let peaje of this.costeado.Peajes?.peajes[1] || []) {
+            this.costosPeajesDetallados.push(peaje);
+          }
+        }
         this.costeadoB = true;
       }
     })

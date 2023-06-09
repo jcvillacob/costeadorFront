@@ -386,6 +386,12 @@ input[type='range']::-webkit-slider-thumb {
     background-color: #ee2c362d;
 }
 
+.mapa {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+}
+
 .expand {
     width: 30%;
     justify-content: flex-start;
@@ -398,7 +404,6 @@ input[type='range']::-webkit-slider-thumb {
 .todos-costos {
     width: 90%;
     padding: 15px;
-    background-color: #ee2c3625;
     margin-top: 20px;
     border-radius: 15px;
 }

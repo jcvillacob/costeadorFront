@@ -293,6 +293,11 @@
         </div>
     </div>
 
+    <div class="mapa">
+        <app-mapa [Distancia]="costeado.Distancia" [peajes]="costosPeajesDetallados"></app-mapa>
+    </div>
+
+
     <button (click)="expandir = !expandir" class="costear-btn expand">
         <i class="fa-solid fa-arrow-down" *ngIf="!expandir"></i>
         <i class="fa-solid fa-arrow-up" *ngIf="expandir"></i>

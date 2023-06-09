@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { PeajesComponent } from './components/peajes/peajes.component';
 import { CompensacionComponent } from './components/compensacion/compensacion.component';
 import { GruposComponent } from './components/grupos/grupos.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,16 @@ import { FooterComponent } from './components/footer/footer.component';
     PeajesComponent,
     CompensacionComponent,
     GruposComponent,
-    FooterComponent
+    FooterComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

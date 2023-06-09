@@ -18,6 +18,7 @@ export class PeajesComponent implements OnInit {
   suggestionsInter: string[] = [];
   ciudades: string[] = [];
   loading: boolean = false;
+  costosPeajesDetallados: any[] = [];
 
   tipo_vh: string = '';
   tipo_vhs: string[] = ['TM', 'DT', 'SC'];
@@ -140,6 +141,12 @@ export class PeajesComponent implements OnInit {
     this.costeoService.Peaje(costeo).subscribe(data => {
       if(!data.error) {
         this.costeado = data;
+        this.costosPeajesDetallados = this.costeado.peajes[0] || [];
+        if (this.costeado.peajes.length > 0) {
+          for (let peaje of this.costeado.peajes[1] || []) {
+            this.costosPeajesDetallados.push(peaje);
+          }
+        }
         console.log(data);
         this.loading = false
         this.costeadoB = true;

@@ -80,7 +80,7 @@
                     'COP', minimumFractionDigits: 0 }) }}</h4>
             </div>
             <div class="costos-detallados">
-                <div class="costo-detallado-indiv" *ngFor="let peaje of costeado.peajes[0]">
+                <div class="costo-detallado-indiv" *ngFor="let peaje of costosPeajesDetallados">
                     <h3>{{ peaje.tollName }}</h3>
                     <h4>{{ peaje.cost.toLocaleString('es-ES', { style: 'currency', currency: 'COP',
                         minimumFractionDigits:

@@ -173,7 +173,7 @@ export class GruposComponent {
               // CREAR UNA NUEVA HOJA CON LOS NUEVOS DATOS
               let newWorksheet = XLSX.utils.json_to_sheet(newRows);
               XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Costeado');
-  
+
               // GENERAR EL ARCHIVO PARA DESCARGAR
               let filename = this.file.name.split('.').slice(0, -1).join('.') + "_Costeado.xlsx";
               XLSX.writeFile(newWorkbook, filename);
