@@ -12,6 +12,8 @@ export class GruposComponent {
   columns: string[] = [];
   file!: File;
   loading: boolean = false;
+  costeadoB: boolean = false;
+  costeados: any[] = [];
 
   constructor(private costeoService: CosteoService) { }
 
@@ -44,6 +46,22 @@ export class GruposComponent {
     document.body.removeChild(anchor);
   }
 
+  descargarCosteados() {
+    let newWorkbook = XLSX.utils.book_new();
+    // CREAR UNA NUEVA HOJA CON LOS NUEVOS DATOS
+    let newWorksheet = XLSX.utils.json_to_sheet(this.costeados);
+    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Costeado');
+
+    // GENERAR EL ARCHIVO PARA DESCARGAR
+    let filename;
+    if(this.tipo === "costeo"){
+      filename = this.file.name.split('.').slice(0, -1).join('.') + "_Costeado.xlsx";
+    } else {
+      filename = this.file.name.split('.').slice(0, -1).join('.') + "_Comprobado.xlsx";
+    }
+    XLSX.writeFile(newWorkbook, filename);
+  }
+
   descargarComprobacion() {
     const fileName = 'Formato Comprobacion.xlsx';
     const assetUrl = 'assets/Formatos/Formato Comprobacion.xlsx';
@@ -64,7 +82,7 @@ export class GruposComponent {
   cotizar() {
     let costeo: any = {};
     let fileReader = new FileReader();
-    let newWorkbook = XLSX.utils.book_new();
+    this.costeadoB = false;
 
     fileReader.onload = (e) => {
       let arrayBuffer: any = fileReader.result;
@@ -107,16 +125,15 @@ export class GruposComponent {
         }
 
         /* FUNCION CUANDO ES COSTEO */
-        if(this.tipo == "costeo") {
+        if (this.tipo == "costeo") {
           this.costeoService.Costear(costeo).subscribe(data => {
-            console.log(data);
-  
+
             newRows.push({
               "Cliente": data.Costeo.Cliente,
               "Origen": data.Distancia.Origen,
               "Destino": data.Distancia.Destino,
               "Distancia": data.Distancia.Distancia,
-              "Observación": data.Costeo.Observacion,
+              "Observacion": data.Costeo.Observacion,
               "Tipo_Vh": data.Costeo.Tipo_vehiculo,
               "Compensacion": data.Costeo.Compensacion,
               "Flete": data.Costeo.Ingresos.Flete_total,
@@ -128,23 +145,18 @@ export class GruposComponent {
               "Costos_Fijos": data.Costeo.Costos.Costos_Fijos.Total_fijos,
               "Costos_Variables": data.Costeo.Costos.Costos_Variables.Total_variables
             });
-  
+
             count++;
             if (count === rows.length) {
+              this.costeados = newRows;
+              console.log(this.costeados);
               this.loading = false;
-  
-              // CREAR UNA NUEVA HOJA CON LOS NUEVOS DATOS
-              let newWorksheet = XLSX.utils.json_to_sheet(newRows);
-              XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Costeado');
-  
-              // GENERAR EL ARCHIVO PARA DESCARGAR
-              let filename = this.file.name.split('.').slice(0, -1).join('.') + "_Costeado.xlsx";
-              XLSX.writeFile(newWorkbook, filename);
+              this.costeadoB = true;
             }
           });
         }
 
-        if(this.tipo == "comprobar") {
+        if (this.tipo == "comprobar") {
           this.costeoService.comprobar(costeo).subscribe(data => {
             console.log(data);
 
@@ -153,7 +165,7 @@ export class GruposComponent {
               "Origen": data.Distancia.Origen,
               "Destino": data.Distancia.Destino,
               "Distancia": data.Distancia.Distancia,
-              "Observación": data.Costeo.Observacion,
+              "Observacion": data.Costeo.Observacion,
               "Tipo_Vh": data.Costeo.Tipo_vehiculo,
               "Compensacion": data.Costeo.Compensacion,
               "Flete": data.Costeo.Ingresos.Flete_total,
@@ -168,15 +180,10 @@ export class GruposComponent {
 
             count++;
             if (count === rows.length) {
+              this.costeados = newRows;
+              console.log(this.costeados);
               this.loading = false;
-  
-              // CREAR UNA NUEVA HOJA CON LOS NUEVOS DATOS
-              let newWorksheet = XLSX.utils.json_to_sheet(newRows);
-              XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Costeado');
-
-              // GENERAR EL ARCHIVO PARA DESCARGAR
-              let filename = this.file.name.split('.').slice(0, -1).join('.') + "_Costeado.xlsx";
-              XLSX.writeFile(newWorkbook, filename);
+              this.costeadoB = true;
             }
           });
         }

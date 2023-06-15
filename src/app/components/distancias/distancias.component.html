@@ -51,3 +51,33 @@
         </button>
     </div>
 </form>
+
+<div class="costeado" *ngIf="costeadoB">
+    <div class="info-importante">
+        <div class="card">
+            <h4>Origen:</h4>
+            <div class="valor">
+                <h5>{{ costeado.Origen }}</h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Destino:</h4>
+            <div class="valor">
+                <h5>{{ costeado.Destino }}</h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Distancia:</h4>
+            <div class="valor">
+                <h5>{{ costeado.Distancia }} Km</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="mapa">
+        <app-mapa [Distancia]="costeado"></app-mapa>
+    </div>
+
+</div>

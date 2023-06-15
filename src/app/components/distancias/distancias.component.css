@@ -342,3 +342,52 @@ input[type='range']::-webkit-slider-thumb {
 .loader {
     margin-bottom: -10px;
 }
+
+
+/* COSTEADOS */
+.costeado {
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+.info-importante {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-importante .card {
+    width: 25%;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgb(61, 59, 59);
+}
+
+.valor {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.valor h5 {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.ingre {
+    background-color: rgba(13, 240, 13, 0.116);
+}
+
+.costo {
+    background-color: #ee2c362d;
+}
+
+.mapa {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+}

@@ -18,6 +18,8 @@ export class DistanciasComponent implements OnInit {
   suggestionsInter: string[] = [];
   ciudades: string[] = [];
   loading: boolean = false;
+  costeado: any = {};
+  costeadoB: boolean = false;
 
 
   quote: any = { frase: '', autor: '' };
@@ -95,6 +97,7 @@ export class DistanciasComponent implements OnInit {
   }
 
   async cotizar() {
+    this.costeadoB = false;
     const costeo: any = {};
 
     /* ALERTA PARA QUE INGRESE RUTA */
@@ -119,6 +122,8 @@ export class DistanciasComponent implements OnInit {
     this.ciudades = [];
     this.costeoService.Distancia(costeo).subscribe(data => {
       console.log(data);
+      this.costeado = data;
+      this.costeadoB = true;
       this.loading = false
     })
   }

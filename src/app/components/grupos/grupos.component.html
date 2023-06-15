@@ -18,7 +18,8 @@
     <label for="document" class="drop-container">
         <span class="drop-title">Arrastra el Archivo</span>
         ó
-        <input type="file" id="document" class="custom-file-input" accept=".xlsx, .xls" (change)="handleFileInput($event)" required>
+        <input type="file" id="document" class="custom-file-input" accept=".xlsx, .xls"
+            (change)="handleFileInput($event)" required>
     </label>
 
     <label class="seleccion-tipo">
@@ -39,3 +40,48 @@
         </button>
     </div>
 </form>
+
+<div class="costeados" *ngIf="costeadoB">
+    <div class="fila down-btn">
+        <button class="nuevaCiudad" type="button" (click)="descargarCosteados()">
+            <span>Descargar Excel</span>
+        </button>
+    </div>
+    <div class="fila resultados">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Distancia</th>
+                    <th>Obser...</th>
+                    <th>Vh</th>
+                    <th>Utilidad</th>
+                    <th>Compen...</th>
+                    <th>Flete</th>
+                    <th>EBITDA</th>
+                    <th>Costos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let costeo of costeados">
+                    <td>{{ costeo.Cliente }}</td>
+                    <td>{{ costeo.Origen.split(',')[0] }}</td>
+                    <td>{{ costeo.Destino.split(',')[0] }}</td>
+                    <td>{{ costeo.Distancia }}</td>
+                    <td>{{ costeo.Observacion }}</td>
+                    <td>{{ costeo.Tipo_Vh }}</td>
+                    <td>{{ costeo.Utilidad * 100 }} %</td>
+                    <td>{{ costeo.Compensacion * 100 }} %</td>
+                    <td>{{ costeo.Flete.toLocaleString('es-ES', { style: 'currency', currency: 'COP',
+                        minimumFractionDigits: 0 }) }}</td>
+                    <td>{{ costeo.EBITDA.toLocaleString('es-ES', { style: 'currency', currency: 'COP',
+                        minimumFractionDigits: 0 }) }}</td>
+                    <td>{{ costeo.Costos_Totales.toLocaleString('es-ES', { style: 'currency', currency: 'COP',
+                        minimumFractionDigits: 0 }) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
