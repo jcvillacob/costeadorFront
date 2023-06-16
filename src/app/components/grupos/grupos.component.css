@@ -195,3 +195,8 @@ th, td {
     padding: 5px;
     border: 1px dotted black;
 }
+
+th {
+    background-color: #072A30;
+    color: #fff;
+}
