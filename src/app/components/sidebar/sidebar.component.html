@@ -1,12 +1,12 @@
 <div class="navigation" [ngClass]="{'active': navActive}">
     <ul>
-        <a class="img" href="#">
+        <a class="img" routerLink="">
             <img src="assets\CT_LOGOS-24.png" alt="Logo Coorditanques">
         </a>
         <li class="list" *ngFor="let item of menuItems; let i = index" [ngClass]="{'active': selectedItem === item.href}">
             <b></b>
             <b></b>
-            <a href="{{ item.href }}" class="icon-title">
+            <a routerLink="{{ item.href }}" class="icon-title">
                 <span class="icon"><i [ngClass]="item.icon"></i></span>
                 <span class="title">{{ item.title }}</span>
             </a>

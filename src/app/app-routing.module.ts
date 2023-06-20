@@ -9,7 +9,7 @@ import { CompensacionComponent } from './components/compensacion/compensacion.co
 import { GruposComponent } from './components/grupos/grupos.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '', pathMatch: 'full', redirectTo: 'costeo' },
   { path: 'home', component: HomeComponent},
   { path: 'costeo', component: CosteoComponent},
   { path: 'comprobar', component: ComprobarComponent},
@@ -20,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -2,7 +2,7 @@
     <google-map #miMapa [center]="center" [zoom]="zoom" class="map">
         <map-marker *ngFor="let dato of coordenadas" [position]="dato.Coordenadas" [title]="dato.Ciudad"></map-marker>
         <map-marker *ngFor="let peaje of peajes" [position]="{lat: peaje.location.lat, lng: peaje.location.lng}" 
-        [title]="peaje.tollName" [options]="{icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'}"></map-marker>
+        [title]="peaje.tollName" [options]="{icon: 'assets/pin-de-mapa.png'}"></map-marker>
         <map-polyline [options]="polylineOptions"></map-polyline>
     </google-map>
 </div>

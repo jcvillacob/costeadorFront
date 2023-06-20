@@ -339,11 +339,6 @@ input[type='range']::-webkit-slider-thumb {
     cursor: pointer;
 }
 
-.loader {
-    margin-bottom: -10px;
-}
-
-
 /* COSTEADOS */
 .costeado {
     width: 100%;

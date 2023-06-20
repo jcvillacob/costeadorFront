@@ -1,22 +1,35 @@
 const { app, BrowserWindow } = require('electron')
-const path = require('path')
-const url = require('url')
 
-function createWindow () {
-  let win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    }
-  })
+let win;
 
-  // Carga el archivo index.html de la compilación de Angular
-  win.loadURL(
-    path.resolve(__dirname, 'dist/costeador-front/index.html')
-  )
-  // Abrir las herramientas de desarrollo de Chrome
-  win.webContents.openDevTools()
+function createWindow() {
+    win = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    })
+
+    win.loadFile('dist/costeador-front/index.html')
+    
+    win.setMenu(null);
+    
+    win.on('closed', () => {
+        win = null
+    })
 }
 
-app.whenReady().then(createWindow)
+app.on('ready', createWindow)
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+
+app.on('activate', () => {
+    if (win === null) {
+        createWindow()
+    }
+})

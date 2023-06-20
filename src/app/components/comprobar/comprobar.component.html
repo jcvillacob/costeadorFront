@@ -54,7 +54,7 @@
                 </li>
             </ul>
         </label>
-        
+
         <label>
             <h4>
                 Distancia Propia:
@@ -89,7 +89,7 @@
             <h4>
                 Ciudad Intermedia:
             </h4>
-            <input [(ngModel)]="ciudadInter" name="ciudadInter"  (keyup)="sugerirInter(ciudadInter)">
+            <input [(ngModel)]="ciudadInter" name="ciudadInter" (keyup)="sugerirInter(ciudadInter)">
             <ul class="suggestions" *ngIf="suggestionsInter && suggestionsInter.length">
                 <li *ngFor="let suggestion of suggestionsInter" (click)="selectSuggestionInter(suggestion)">
                     {{ suggestion }}
@@ -290,6 +290,10 @@
         </div>
     </div>
 
+    <div class="mapa">
+        <app-mapa [Distancia]="costeado.Distancia" [peajes]="costosPeajesDetallados"></app-mapa>
+    </div>
+
     <button (click)="expandir = !expandir" class="costear-btn expand">
         <i class="fa-solid fa-arrow-down" *ngIf="!expandir"></i>
         <i class="fa-solid fa-arrow-up" *ngIf="expandir"></i>
@@ -316,7 +320,7 @@
         </div>
 
         <div class="costos-totales-c">
-            <div class="costo-indiv"  (click)="todosFijos = !todosFijos">
+            <div class="costo-indiv" (click)="todosFijos = !todosFijos">
                 <h3>Todos los Costos Fijos (Sin Depreciación): </h3>
                 <h4>{{ costeado.Costeo?.Costos.Costos_Fijos.Total_fijos.toLocaleString('es-ES', { style: 'currency',
                     currency:
@@ -340,7 +344,8 @@
             <div class="costos-detallados" *ngIf="todosPeajes">
                 <div class="costo-detallado-indiv" *ngFor="let peaje of costosPeajesDetallados">
                     <h3>{{ peaje.tollName }}</h3>
-                    <h4>{{ peaje.cost.toLocaleString('es-ES', { style: 'currency', currency: 'COP', minimumFractionDigits:
+                    <h4>{{ peaje.cost.toLocaleString('es-ES', { style: 'currency', currency: 'COP',
+                        minimumFractionDigits:
                         0 }) }}</h4>
                 </div>
             </div>
@@ -349,7 +354,8 @@
         <div class="costos-totales-c">
             <div class="costo-indiv" (click)="todosVariables = !todosVariables">
                 <h3>Todos los Costos Variables (Sin ACPM): </h3>
-                <h4>{{ (costeado.Costeo?.Costos.Costos_Variables.Total_variables - costeado.Costeo?.Costos.Acpm.price).toLocaleString('es-ES', { style: 'currency',
+                <h4>{{ (costeado.Costeo?.Costos.Costos_Variables.Total_variables -
+                    costeado.Costeo?.Costos.Acpm.price).toLocaleString('es-ES', { style: 'currency',
                     currency:
                     'COP', minimumFractionDigits: 0 }) }}</h4>
             </div>

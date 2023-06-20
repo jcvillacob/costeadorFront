@@ -11,7 +11,7 @@ export class SidebarComponent {
   navActive: boolean = false;
   selectedItem: string = '';
   menuItems = [
-    { icon: 'fa-solid fa-house', title: 'Home', href: '/home' },
+    /* { icon: 'fa-solid fa-house', title: 'Home', href: '/home' }, */
     { icon: 'fa-solid fa-truck', title: 'Costear', href: '/costeo' },
     { icon: 'fa-solid fa-sack-dollar', title: 'Comprobar', href: '/comprobar' },
     { icon: 'fa-solid fa-route', title: 'Distancia', href: '/distancia' },
