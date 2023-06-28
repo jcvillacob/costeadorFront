@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { CosteoService } from 'src/app/services/costeo.service';
 import { FrasesService } from 'src/app/services/frases.service';
+import { PendientesService } from 'src/app/services/pendientes.service';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
 import Swal from 'sweetalert2';
 

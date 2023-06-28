@@ -53,7 +53,6 @@ label {
 
 
 
-
 /* File Input */
 .drop-container {
     width: 90%;
@@ -195,4 +194,69 @@ th, td {
 th {
     background-color: #072A30;
     color: #fff;
+}
+
+
+/* COPIADO DE HOME */
+.title {
+    color: rgb(32, 31, 31);
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.title p {
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+.no-pendientes {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+    color: #072a30d2;
+}
+
+.resultados {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 70px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+    border: 1px dotted black;
+}
+
+th {
+    background-color: #072A30;
+    color: #fff;
+}
+
+.fa-pen-to-square {
+    color: #072A30;
+}
+
+.fa-trash {
+    color: red;
+    margin-left: 10px;
+}
+
+i:hover {
+    cursor: pointer;
 }

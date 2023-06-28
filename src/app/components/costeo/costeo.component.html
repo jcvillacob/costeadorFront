@@ -214,6 +214,9 @@
             <span *ngIf="!loading">Cotizar</span>
             <app-loading *ngIf="loading" class="loader"></app-loading>
         </button>
+        <button type="button" class="costear-btn" *ngIf="costeadoB" (click)="guardarCosteo()">
+            <span>Guardar</span>
+        </button>
     </div>
 </form>
 

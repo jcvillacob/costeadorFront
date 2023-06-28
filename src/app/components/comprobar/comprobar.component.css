@@ -83,6 +83,8 @@ h4 {
   cursor: pointer;
 }
 
+
+
 /* CIUDADES */
 .ciudades {
   display: flex;
@@ -322,6 +324,7 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+  gap: 50px;
 }
 
 .costear-btn {
@@ -341,6 +344,11 @@ input[type="range"]::-webkit-slider-thumb {
 .costear-btn:hover {
   background-color: #072a30;
   cursor: pointer;
+}
+
+.costear-btn:disabled {
+  background-color: #555;
+  cursor: auto;
 }
 
 /* COSTEADOS */

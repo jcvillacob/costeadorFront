@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CosteoService } from 'src/app/services/costeo.service';
 import { FrasesService } from 'src/app/services/frases.service';
+import { PendientesService } from 'src/app/services/pendientes.service';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
 import Swal from 'sweetalert2';
 
@@ -66,9 +68,24 @@ export class CosteoComponent implements OnInit {
 
   constructor(private frasesService: FrasesService,
     private suggestionsService: SuggestionsService,
-    private costeoService: CosteoService) { }
+    private costeoService: CosteoService,
+    private route: ActivatedRoute,
+    private pendientesService: PendientesService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if(params['id']) {
+        let costeooo = this.pendientesService.getCosteoPendientes(params['id']);
+        this.cliente = costeooo[0].Cliente;
+        this.origen = costeooo[0].Ciudades[0];
+        this.destino = costeooo[0].Ciudades[1];
+        this.observacion = costeooo[0].Observacion;
+        this.tipo_vh = costeooo[0].tipo_vh;
+        this.utili = costeooo[0].Utilidad * 100;
+        this.comp = costeooo[0].Comp * 100;
+      }
+    });
+
     this.frasesService.getRandomQuote().subscribe(response => {
       this.quote = response;
     });
@@ -207,6 +224,10 @@ export class CosteoComponent implements OnInit {
       this.ciudadInter = suggestion;
     }
     this.suggestionsInter = [];
+  }
+
+  guardarCosteo() {
+    
   }
 
   async cotizar() {

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CosteoService } from 'src/app/services/costeo.service';
+import { PendientesService } from 'src/app/services/pendientes.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -7,18 +9,43 @@ import * as XLSX from 'xlsx';
   templateUrl: './grupos.component.html',
   styleUrls: ['./grupos.component.css']
 })
-export class GruposComponent {
+export class GruposComponent implements OnInit {
   tipo: string = 'costeo';
   columns: string[] = [];
   file!: File;
   loading: boolean = false;
   costeadoB: boolean = false;
   costeados: any[] = [];
+  comprobacionesPendientes: any[] = []
 
-  constructor(private costeoService: CosteoService) { }
+  constructor(private costeoService: CosteoService, private router: Router, private pendientesService: PendientesService) { }
+
+  ngOnInit(): void {
+    let aComprobar = this.pendientesService.comprobacionesPendientes;
+    if(aComprobar) {
+      this.comprobacionesPendientes = aComprobar;
+    }
+  }
 
   handleFileInput(event: any) {
     this.file = event.target.files.item(0);
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      let arrayBuffer: any = fileReader.result;
+      let data = new Uint8Array(arrayBuffer);
+      let arr = new Array();
+      for (let i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+      let bstr = arr.join("");
+      
+      let workbook = XLSX.read(bstr, { type: "binary" });
+      let firstSheetName = workbook.SheetNames[0];
+      let worksheet = workbook.Sheets[firstSheetName];
+      
+      this.comprobacionesPendientes = XLSX.utils.sheet_to_json(worksheet, { header: 2 }) as any[];
+      this.pendientesService.loadComprobacionesPendientes(this.comprobacionesPendientes);
+      console.log(this.comprobacionesPendientes);
+    }
+    fileReader.readAsArrayBuffer(this.file);
   }
 
   cambiarCos() {
@@ -54,7 +81,7 @@ export class GruposComponent {
 
     // GENERAR EL ARCHIVO PARA DESCARGAR
     let filename;
-    if(this.tipo === "costeo"){
+    if (this.tipo === "costeo") {
       filename = this.file.name.split('.').slice(0, -1).join('.') + "_Costeado.xlsx";
     } else {
       filename = this.file.name.split('.').slice(0, -1).join('.') + "_Comprobado.xlsx";
@@ -97,7 +124,7 @@ export class GruposComponent {
 
       let rows = XLSX.utils.sheet_to_json(worksheet, { header: 2 }) as any[];
 
-      let newRows: any[] = []; // To store the new data
+      let newRows: any[] = [];
 
       this.loading = true;
       let count = 0;
@@ -194,5 +221,16 @@ export class GruposComponent {
     fileReader.readAsArrayBuffer(this.file);
   }
 
+  editarCosteo(costeo: any) {
+    this.router.navigate(['/costeo', costeo.id]);
+  }
+
+  editarComprobacion(i: number) {
+    this.router.navigate(['/comprobar', i]);
+  }
+
+  descargarRealizados() {
+    this.pendientesService.descargarCompro();
+  }
 
 }

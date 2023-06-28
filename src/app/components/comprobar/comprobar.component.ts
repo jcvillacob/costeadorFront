@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CosteoService } from 'src/app/services/costeo.service';
 import { FrasesService } from 'src/app/services/frases.service';
+import { PendientesService } from 'src/app/services/pendientes.service';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -9,6 +11,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./comprobar.component.css']
 })
 export class ComprobarComponent implements OnInit {
+  i!: number;
+  compro: boolean = false;
+  ultimo: number = -1;
+  disabledNext: boolean = false;
+
   origen: string = '';
   destino: string = '';
   ciudadInter: string = '';
@@ -65,9 +72,34 @@ export class ComprobarComponent implements OnInit {
 
   constructor(private frasesService: FrasesService,
     private suggestionsService: SuggestionsService,
-    private costeoService: CosteoService) { }
+    private costeoService: CosteoService,
+    private route: ActivatedRoute,
+    private pendientesService: PendientesService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if(params['id']) {
+        this.i = Number(params['id']);
+        this.compro = true;
+        setTimeout(() => {
+          let costeooo = this.pendientesService.getComproPendientes(params['id']);
+          this.ultimo = this.pendientesService.ultimo;
+          if ((this.ultimo - 1) == params['id']) {
+            console.log("Si es");
+            this.disabledNext = true;
+          }
+          this.cliente = costeooo.Cliente;
+          this.origen = costeooo.Origen;
+          this.destino = costeooo.Destino;
+          this.observacion = costeooo.Observacion;
+          this.tipo_vh = costeooo.TipoVh;
+          this.flete = costeooo.Flete;
+          this.comp = costeooo.Compensacion * 100;
+        }, 500);
+      }
+    });
+
     this.frasesService.getRandomQuote().subscribe(response => {
       this.quote = response;
     });
@@ -364,7 +396,17 @@ export class ComprobarComponent implements OnInit {
           }
         }
         this.costeadoB = true;
+
+        this.route.params.subscribe(params => {
+          if(params['id']) {
+            this.pendientesService.UpdateComproPendientes(params['id'], this.costeado);
+          }
+        });
       }
     })
+  }
+
+  siguienteComprobacion() {
+    this.router.navigate(['/comprobar', this.i + 1]);
   }
 }

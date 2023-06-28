@@ -9,10 +9,12 @@ import { CompensacionComponent } from './components/compensacion/compensacion.co
 import { GruposComponent } from './components/grupos/grupos.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'costeo' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent},
   { path: 'costeo', component: CosteoComponent},
+  { path: 'costeo/:id', component: CosteoComponent},
   { path: 'comprobar', component: ComprobarComponent},
+  { path: 'comprobar/:id', component: ComprobarComponent},
   { path: 'distancia', component: DistanciasComponent},
   { path: 'peajes', component: PeajesComponent},
   { path: 'compensacion', component: CompensacionComponent},

@@ -11,7 +11,68 @@
     font-size: 1.2rem;
 }
 
-/* PARA LAS SECCIONES */
 h3 {
     font-size: 2rem;
+}
+
+.no-pendientes {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+    color: #072a30d2;
+}
+
+.resultados {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 70px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+    border: 1px dotted black;
+}
+
+th {
+    background-color: #072A30;
+    color: #fff;
+}
+
+.fa-pen-to-square {
+    color: #072A30;
+}
+
+.fa-trash {
+    color: red;
+    margin-left: 10px;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+#nuevaCiudad {
+    margin-bottom: 50px;
+    padding: 15px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #EE2C37;
+    color: aliceblue;
+    border-width: 0;
+    box-shadow: 1px 1px 2px rgb(53, 51, 51);
+}
+
+#nuevaCiudad:hover {
+    background-color: #072A30;
+    cursor: pointer;
 }

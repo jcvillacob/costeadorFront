@@ -1,9 +1,77 @@
 <div class="title">
-    <h1>Introducción</h1>
+    <h1>Inicio</h1>
     <p></p>
     <section class="seccion">
-        <h3>Costeo</h3>
-        <h5></h5>
+        <h3>Costeos Pendientes</h3>
+        <h5 *ngIf="costeosPendientes.length === 0" class="no-pendientes">No hay costeos pendientes en este momento</h5>
+        <div class="resultados">
+            <table *ngIf="costeosPendientes.length !== 0">
+                <thead>
+                    <tr class="head">
+                        <th>Cliente</th>
+                        <th>Observación</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Vh</th>
+                        <th>Utilidad</th>
+                        <th>Compensación</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let costeo of costeosPendientes; index as i">
+                        <td>{{ costeo.Cliente }}</td>
+                        <td>{{ costeo.Observacion }}</td>
+                        <td>{{ costeo.Ciudades[0] }}</td>
+                        <td>{{ costeo.Ciudades[1] }}</td>
+                        <td>{{ costeo.tipo_vh }}</td>
+                        <td>{{ costeo.Utilidad * 100 }} %</td>
+                        <td>{{ costeo.Comp * 100 }} %</td>
+                        <td class="icons">
+                            <i class="fa-solid fa-pen-to-square" (click)="editarCosteo(i)"></i>
+                            <i class="fa-solid fa-trash"></i>   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <h3>Comprobaciones Pendientes</h3>
+        <h5 *ngIf="comprobacionesPendientes.length === 0" class="no-pendientes">No hay costeos registrados aún...</h5>
+        <div class="resultados">
+            <table *ngIf="comprobacionesPendientes.length !== 0">
+                <thead>
+                    <tr class="head">
+                        <th>Cliente</th>
+                        <th>Observación</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Vh</th>
+                        <th>Flete</th>
+                        <th>Compensación</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let costeo of comprobacionesPendientes; index as i">
+                        <td>{{ costeo.Cliente }}</td>
+                        <td>{{ costeo.Observacion }}</td>
+                        <td>{{ costeo.Origen }}</td>
+                        <td>{{ costeo.Destino }}</td>
+                        <td>{{ costeo.TipoVh }}</td>
+                        <td>{{ costeo.Flete }}</td>
+                        <td>{{ costeo.Compensacion * 100 }} %</td>
+                        <td class="icons">
+                            <i class="fa-solid fa-pen-to-square" (click)="editarComprobacion(i)" *ngIf="!costeo.comprobado"></i>
+                            <i class="fa-solid fa-trash" *ngIf="!costeo.comprobado"></i>
+                            <i class="fa-solid fa-check"  *ngIf="costeo.comprobado"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </div>

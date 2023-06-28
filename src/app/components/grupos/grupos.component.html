@@ -42,11 +42,7 @@
 </form>
 
 <div class="costeados" *ngIf="costeadoB">
-    <div class="fila down-btn">
-        <button class="nuevaCiudad" type="button" (click)="descargarCosteados()">
-            <span>Descargar Excel</span>
-        </button>
-    </div>
+    
     <div class="fila resultados">
         <table>
             <thead>
@@ -85,3 +81,45 @@
         </table>
     </div>
 </div>
+
+<section class="seccion" *ngIf="comprobacionesPendientes.length !== 0">
+    <div class="fila down-btn">
+        <button class="nuevaCiudad" type="button" (click)="descargarRealizados()">
+            <span>Descargar Excel</span>
+        </button>
+    </div>
+    <h3>Comprobaciones Pendientes</h3>
+    <h5 *ngIf="comprobacionesPendientes.length === 0" class="no-pendientes">No hay costeos registrados aún...</h5>
+    <div class="resultados">
+        <table>
+            <thead>
+                <tr class="head">
+                    <th>Cliente</th>
+                    <th>Observación</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Vh</th>
+                    <th>Flete</th>
+                    <th>Compensación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let costeo of comprobacionesPendientes; index as i">
+                    <td>{{ costeo.Cliente }}</td>
+                    <td>{{ costeo.Observacion }}</td>
+                    <td>{{ costeo.Origen }}</td>
+                    <td>{{ costeo.Destino }}</td>
+                    <td>{{ costeo.TipoVh }}</td>
+                    <td>{{ costeo.Flete }}</td>
+                    <td>{{ costeo.Compensacion * 100 }} %</td>
+                    <td class="icons">
+                        <i class="fa-solid fa-pen-to-square" (click)="editarComprobacion(i)" *ngIf="!costeo.comprobado"></i>
+                        <i class="fa-solid fa-trash" *ngIf="!costeo.comprobado"></i>
+                        <i class="fa-solid fa-check"  *ngIf="costeo.comprobado"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

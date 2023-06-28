@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
 import polyline from '@mapbox/polyline';
+import { PendientesService } from 'src/app/services/pendientes.service';
 
 @Component({
   selector: 'app-mapa',
@@ -26,7 +27,8 @@ export class MapaComponent implements OnInit {
   polylineOptions: google.maps.PolylineOptions = this.defaultPolylineOptions;
   path: Promise<google.maps.LatLngLiteral[]> = Promise.resolve([]);
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef,
+    private pendientesService: PendientesService) { }
 
   /* AQUI ESTÁ EL ONINIT */
   ngOnInit(): void { }

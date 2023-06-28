@@ -210,6 +210,9 @@
             <span *ngIf="!loading">Comprobar</span>
             <app-loading *ngIf="loading" class="loader"></app-loading>
         </button>
+        <button type="button" class="costear-btn" (click)="siguienteComprobacion()"*ngIf="compro" [disabled]="disabledNext">
+            <span>Siguiente</span>
+        </button>
     </div>
 </form>
 
