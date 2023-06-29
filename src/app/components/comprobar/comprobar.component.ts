@@ -407,6 +407,7 @@ export class ComprobarComponent implements OnInit {
   }
 
   siguienteComprobacion() {
+    this.costeadoB = false;
     this.router.navigate(['/comprobar', this.i + 1]);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
 import polyline from '@mapbox/polyline';
 import { PendientesService } from 'src/app/services/pendientes.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mapa',
@@ -38,6 +39,21 @@ export class MapaComponent implements OnInit {
       this.loadData();
     }
   }
+
+  loadGoogleMapsScript() {
+    const node = document.createElement('script');
+    node.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}`;
+    node.type = 'text/javascript';
+
+    const googleMapsElement = document.getElementById('googleMaps');
+
+    if (googleMapsElement) {
+      googleMapsElement.appendChild(node);
+    } else {
+      console.error('Element with id "googleMaps" not found');
+    }
+  }
+
 
 
   async loadData() {
